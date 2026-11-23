@@ -32,4 +32,31 @@ class TaskController extends Controller
 
     return redirect('/');
 }
+
+public function edit($id)
+{
+    $task = Task::findOrFail($id);
+
+    return view('tasks.edit', compact('task'));
+}
+
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'status' => 'required|in:Completed,Pending',
+    ]);
+
+    $task = Task::findOrFail($id);
+
+    $task->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'status' => $request->status,
+    ]);
+
+    return redirect('/');
+}
 }

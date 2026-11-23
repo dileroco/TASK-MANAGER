@@ -38,7 +38,9 @@
             <td>{{ $task->status }}</td>
 
             <td>
-                <button></button>
+                <a href="{{ url('/tasks/' . $task->id . '/edit') }}" class="btn btn-warning btn-sm">
+                    Edit
+                </a>
             </td>
         </tr>
     @endforeach

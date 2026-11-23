@@ -38,7 +38,7 @@
                 Save
             </button>
 
-            <a href="{{ url('/tasks') }}" class="btn btn-secondary">
+            <a href="{{ url('/') }}" class="btn btn-secondary">
                 Cancel
             </a>
 

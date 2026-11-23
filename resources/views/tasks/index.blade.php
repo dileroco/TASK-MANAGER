@@ -41,6 +41,54 @@
                 <a href="{{ url('/tasks/' . $task->id . '/edit') }}" class="btn btn-warning btn-sm">
                     Edit
                 </a>
+                <button type="button"
+                        class="btn btn-danger btn-sm"
+                        data-toggle="modal"
+                        data-target="#deleteModal{{ $task->id }}">
+                    Delete
+                </button>
+                <div class="modal fade" id="deleteModal{{ $task->id }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Deletion</h5>
+
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+
+            <div class="modal-body">
+                Are you sure you want to delete this task?
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal">
+                    Cancel
+                </button>
+
+                <form action="{{ url('/tasks/' . $task->id) }}"
+                      method="POST">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn btn-danger">
+                        Yes, Delete
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
             </td>
         </tr>
     @endforeach
@@ -49,5 +97,8 @@
 
     </div>
 
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -17,6 +17,15 @@
         <a href="{{ url('/tasks/create') }}" class="btn btn-primary mb-3">
             Add Task
         </a>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
         <table class="table table-bordered">
         <thead>
@@ -35,7 +44,17 @@
 
             <td>{{ $task->created_at->format('Y-m-d') }}</td>
 
-            <td>{{ $task->status }}</td>
+            <td>
+            @if ($task->status == 'Completed')
+                <span class="badge badge-success">
+                    Completed
+                </span>
+            @else
+                <span class="badge badge-warning">
+                    Pending
+                </span>
+            @endif
+            </td>
 
             <td>
                 <a href="{{ url('/tasks/' . $task->id . '/edit') }}" class="btn btn-warning btn-sm">

@@ -17,6 +17,51 @@
         <a href="{{ url('/tasks/create') }}" class="btn btn-primary mb-3">
             Add Task
         </a>
+
+        <form action="{{ url('/') }}" method="GET" class="mb-4">
+
+            <div class="form-row">
+
+                <div class="col-md-6">
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control"
+                        placeholder="Search by task title..."
+                        value="{{ request('search') }}"
+                    >
+                </div>
+
+                <div class="col-md-3">
+                    <select name="status" class="form-control">
+                        <option value="">All Statuses</option>
+
+                        <option value="Pending"
+                            {{ request('status') == 'Pending' ? 'selected' : '' }}>
+                            Pending
+                        </option>
+
+                        <option value="Completed"
+                            {{ request('status') == 'Completed' ? 'selected' : '' }}>
+                            Completed
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary">
+                        Search
+                    </button>
+
+                    <a href="{{ url('/tasks') }}" class="btn btn-secondary">
+                        Reset
+                    </a>
+                </div>
+
+            </div>
+
+        </form>
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>

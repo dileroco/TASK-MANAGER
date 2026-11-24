@@ -6,9 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 class TaskController extends Controller
 {
-        public function index()
+        public function index(Request $request)
     {
-        $tasks = Task::all();
+        $query = Task::query();
+
+        if ($request->filled('search')) {
+            $query->where('title', 'LIKE', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $tasks = $query->get();
 
         return view('tasks.index', compact('tasks'));
     }

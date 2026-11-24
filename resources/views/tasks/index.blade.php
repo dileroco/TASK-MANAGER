@@ -7,6 +7,8 @@
 
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  
 </head>
 <body>
 
@@ -17,7 +19,17 @@
         <a href="{{ url('/tasks/create') }}" class="btn btn-primary mb-3">
             Add Task
         </a>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <form action="{{ url('/') }}" method="GET" class="mb-4">
 
             <div class="form-row">
@@ -158,9 +170,9 @@
     @endforeach
         </tbody>
         </table>
-        <div class="d-flex justify-content-center">
-            {{ $tasks->links() }}
-        </div>
+        <div class="d-flex justify-content-center mt-3">
+    {{ $tasks->links('pagination::bootstrap-4') }}
+</div>
 
     </div>
 

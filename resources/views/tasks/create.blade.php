@@ -11,7 +11,15 @@
     <div class="container mt-5">
 
         <h1>create new task</h1>
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <form action="{{ url('/tasks') }}" method="POST">
 
             @csrf

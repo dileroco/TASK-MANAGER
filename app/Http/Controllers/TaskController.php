@@ -18,8 +18,8 @@ class TaskController extends Controller
             $query->where('status', $request->status);
         }
 
-        $tasks = $query->get();
-
+        //$tasks = $query->get();
+        $tasks = $query->paginate(5)->withQueryString();
         return view('tasks.index', compact('tasks'));
     }
         public function create()
